@@ -68,22 +68,24 @@ export default class Tile extends Component {
     const { tileClassName, tileContent } = this.state;
 
     return (
-      <button
-        className={clsx(classes, tileClassName)}
-        disabled={
-          (minDate && minDateTransform(minDate) > date) ||
-          (maxDate && maxDateTransform(maxDate) < date) ||
-          (tileDisabled && tileDisabled({ activeStartDate, date, view }))
-        }
-        onClick={onClick && ((event) => onClick(date, event))}
-        onFocus={onMouseOver && (() => onMouseOver(date))}
-        onMouseOver={onMouseOver && (() => onMouseOver(date))}
-        style={style}
-        type="button"
-      >
-        {formatAbbr ? <abbr aria-label={formatAbbr(locale, date)}>{children}</abbr> : children}
+      <div>
+        <button
+          className={clsx(classes, tileClassName)}
+          disabled={
+            (minDate && minDateTransform(minDate) > date) ||
+            (maxDate && maxDateTransform(maxDate) < date) ||
+            (tileDisabled && tileDisabled({ activeStartDate, date, view }))
+          }
+          onClick={onClick && ((event) => onClick(date, event))}
+          onFocus={onMouseOver && (() => onMouseOver(date))}
+          onMouseOver={onMouseOver && (() => onMouseOver(date))}
+          style={style}
+          type="button"
+        >
+          {formatAbbr ? <abbr aria-label={formatAbbr(locale, date)}>{children}</abbr> : children}
+        </button>
         {tileContent}
-      </button>
+      </div>
     );
   }
 }
